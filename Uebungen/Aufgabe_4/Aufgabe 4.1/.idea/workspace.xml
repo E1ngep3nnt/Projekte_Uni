@@ -24,97 +24,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="207c0a95-7568-400d-9c34-b9e38aab1ea0" name="Changes" comment="update">
-      <change afterPath="$PROJECT_DIR$/../../Aufgabe_2/Aufgabe 2.2/.idea/Aufgabe 2.2.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../Aufgabe_2/Aufgabe 2.3/.idea/Aufgabe 2.3.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../Aufgabe_2/Aufgabe 2.4/.idea/Aufgabe 2.4.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../Aufgabe_2/Aufgabe 2.5/.idea/Aufgabe 2.5.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../Aufgabe_2/Aufgabe 2.6.1 Map Loesung/.idea/Aufgabe 2.6.1 Map Lösung.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../Aufgabe_2/Aufgabe 2.6.2 Vorlesung/.idea/Aufgabe 2.6.2 Vorlesung.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../Aufgabe_2/Aufgabe 2.7/.idea/Aufgabe 2.7.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../Aufgabe_3/Aufgabe 3.2/.idea/Aufgabe 3.2.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../Aufgabe_3/Aufgabe 3.3/.idea/Aufgabe 3.3.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../Projekte/Projekt 1/.idea/editor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Projekte/Projekt 1/.idea/editor.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Aufgabe_2/Aufgabe 2.2/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Aufgabe_2/Aufgabe 2.2/.idea/Aufgabe 1.2.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Aufgabe_2/Aufgabe 2.2/.idea/editor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../Aufgabe_2/Aufgabe 2.2/.idea/editor.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Aufgabe_2/Aufgabe 2.2/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../Aufgabe_2/Aufgabe 2.2/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Aufgabe_2/Aufgabe 2.2/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../Aufgabe_2/Aufgabe 2.2/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Aufgabe_2/Aufgabe 2.2/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../../Aufgabe_2/Aufgabe 2.2/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Aufgabe_2/Aufgabe 2.3/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Aufgabe_2/Aufgabe 2.3/.idea/Aufgabe 1.3.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Aufgabe_2/Aufgabe 2.3/.idea/editor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../Aufgabe_2/Aufgabe 2.3/.idea/editor.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Aufgabe_2/Aufgabe 2.3/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../Aufgabe_2/Aufgabe 2.3/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Aufgabe_2/Aufgabe 2.3/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../Aufgabe_2/Aufgabe 2.3/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Aufgabe_2/Aufgabe 2.3/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../../Aufgabe_2/Aufgabe 2.3/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Aufgabe_2/Aufgabe 2.4/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Aufgabe_2/Aufgabe 2.4/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/../../Aufgabe_2/Aufgabe 2.4/.idea/.name" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Aufgabe_2/Aufgabe 2.4/.idea/Aufgabe 1.4.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Aufgabe_2/Aufgabe 2.4/.idea/editor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../Aufgabe_2/Aufgabe 2.4/.idea/editor.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Aufgabe_2/Aufgabe 2.4/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../Aufgabe_2/Aufgabe 2.4/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Aufgabe_2/Aufgabe 2.4/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../Aufgabe_2/Aufgabe 2.4/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Aufgabe_2/Aufgabe 2.4/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../../Aufgabe_2/Aufgabe 2.4/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Aufgabe_2/Aufgabe 2.5/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Aufgabe_2/Aufgabe 2.5/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/../../Aufgabe_2/Aufgabe 2.5/.idea/.name" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Aufgabe_2/Aufgabe 2.5/.idea/Aufgabe 1.5.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Aufgabe_2/Aufgabe 2.5/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../Aufgabe_2/Aufgabe 2.5/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Aufgabe_2/Aufgabe 2.5/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../Aufgabe_2/Aufgabe 2.5/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Aufgabe_2/Aufgabe 2.5/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../../Aufgabe_2/Aufgabe 2.5/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Aufgabe_2/Aufgabe 2.6.1 Map Lösung/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Aufgabe_2/Aufgabe 2.6.1 Map Lösung/.idea/.name" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Aufgabe_2/Aufgabe 2.6.1 Map Lösung/.idea/Aufgabe 1.6.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Aufgabe_2/Aufgabe 2.6.1 Map Lösung/.idea/editor.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Aufgabe_2/Aufgabe 2.6.1 Map Lösung/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Aufgabe_2/Aufgabe 2.6.1 Map Lösung/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Aufgabe_2/Aufgabe 2.6.1 Map Lösung/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Aufgabe_2/Aufgabe 2.6.1 Map Lösung/Aufgabe 2.6.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Aufgabe_2/Aufgabe 2.6.1 Map Lösung/CMakeLists.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Aufgabe_2/Aufgabe 2.6.1 Map Lösung/std_lib_inc.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Aufgabe_2/Aufgabe 2.6.2 Vorlesung/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Aufgabe_2/Aufgabe 2.6.2 Vorlesung/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/../../Aufgabe_2/Aufgabe 2.6.2 Vorlesung/.idea/.name" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Aufgabe_2/Aufgabe 2.6.2 Vorlesung/.idea/Aufgabe 1.6 Vorlesungs_Version.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Aufgabe_2/Aufgabe 2.6.2 Vorlesung/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../Aufgabe_2/Aufgabe 2.6.2 Vorlesung/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Aufgabe_2/Aufgabe 2.6.2 Vorlesung/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../Aufgabe_2/Aufgabe 2.6.2 Vorlesung/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Aufgabe_2/Aufgabe 2.6.2 Vorlesung/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../../Aufgabe_2/Aufgabe 2.6.2 Vorlesung/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Aufgabe_2/Aufgabe 2.7/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Aufgabe_2/Aufgabe 2.7/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/../../Aufgabe_2/Aufgabe 2.7/.idea/.name" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Aufgabe_2/Aufgabe 2.7/.idea/Aufgabe 1.7.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Aufgabe_2/Aufgabe 2.7/.idea/editor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../Aufgabe_2/Aufgabe 2.7/.idea/editor.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Aufgabe_2/Aufgabe 2.7/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../Aufgabe_2/Aufgabe 2.7/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Aufgabe_2/Aufgabe 2.7/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../Aufgabe_2/Aufgabe 2.7/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Aufgabe_2/Aufgabe 2.7/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../../Aufgabe_2/Aufgabe 2.7/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Aufgabe_3/Aufgabe 3.2/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Aufgabe_3/Aufgabe 3.2/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/../../Aufgabe_3/Aufgabe 3.2/.idea/.name" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Aufgabe_3/Aufgabe 3.2/.idea/Aufgabe 2.2.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Aufgabe_3/Aufgabe 3.2/.idea/editor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../Aufgabe_3/Aufgabe 3.2/.idea/editor.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Aufgabe_3/Aufgabe 3.2/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../Aufgabe_3/Aufgabe 3.2/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Aufgabe_3/Aufgabe 3.2/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../Aufgabe_3/Aufgabe 3.2/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Aufgabe_3/Aufgabe 3.2/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../../Aufgabe_3/Aufgabe 3.2/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Aufgabe_3/Aufgabe 3.3/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Aufgabe_3/Aufgabe 3.3/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/../../Aufgabe_3/Aufgabe 3.3/.idea/.name" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Aufgabe_3/Aufgabe 3.3/.idea/Aufgabe 2.3.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Aufgabe_3/Aufgabe 3.3/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../Aufgabe_3/Aufgabe 3.3/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Aufgabe_3/Aufgabe 3.3/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../Aufgabe_3/Aufgabe 3.3/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Aufgabe_3/Aufgabe 3.3/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../../Aufgabe_3/Aufgabe 3.3/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Aufgabe_3/Aufgabe 3.4/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Aufgabe_3/Aufgabe 3.4/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/../../Aufgabe_3/Aufgabe 3.4/.idea/.name" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Aufgabe_3/Aufgabe 3.4/.idea/Aufgabe 2.4.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Aufgabe_3/Aufgabe 3.4/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../Aufgabe_3/Aufgabe 3.4/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Aufgabe_3/Aufgabe 3.4/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../Aufgabe_3/Aufgabe 3.4/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Aufgabe_3/Aufgabe 3.4/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../../Aufgabe_3/Aufgabe 3.4/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Aufgabe_3/Aufgabe 3.5/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Aufgabe_3/Aufgabe 3.5/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/../../Aufgabe_3/Aufgabe 3.5/.idea/.name" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Aufgabe_3/Aufgabe 3.5/.idea/Aufgabe 2.5.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Aufgabe_3/Aufgabe 3.5/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../Aufgabe_3/Aufgabe 3.5/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Aufgabe_3/Aufgabe 3.5/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../Aufgabe_3/Aufgabe 3.5/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Aufgabe_3/Aufgabe 3.5/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../../Aufgabe_3/Aufgabe 3.5/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Aufgabe_3/Aufgabe 3.6/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Aufgabe_3/Aufgabe 3.6/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/../../Aufgabe_3/Aufgabe 3.6/.idea/.name" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Aufgabe_3/Aufgabe 3.6/.idea/Aufgabe 2.6.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Aufgabe_3/Aufgabe 3.6/.idea/editor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../Aufgabe_3/Aufgabe 3.6/.idea/editor.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Aufgabe_3/Aufgabe 3.6/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../Aufgabe_3/Aufgabe 3.6/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Aufgabe_3/Aufgabe 3.6/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../Aufgabe_3/Aufgabe 3.6/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Aufgabe_3/Aufgabe 3.6/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../../Aufgabe_3/Aufgabe 3.6/CMakeLists.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/4.1.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/4.1.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -155,26 +66,30 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;CMake Application.Aufgabe_4_1.executor&quot;: &quot;Run&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.RadMigrateCodeStyle&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.readMode.enableVisualFormatting&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.west.config.association.type.startup.service&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
-    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;E:/Projekte Uni Programmieren/Uebungen/Aufgabe_4/Aufgabe 4.1&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "CMake Application.Aufgabe_4_1.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.RadMigrateCodeStyle": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.readMode.enableVisualFormatting": "true",
+    "RunOnceActivity.west.config.association.type.startup.service": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "cf.first.check.clang-format": "false",
+    "cidr.known.project.marker": "true",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "E:/Projekte Uni Programmieren/Uebungen/Aufgabe_4/Aufgabe 4.1",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration name="Aufgabe_4_1" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Aufgabe_4_1" TARGET_NAME="Aufgabe_4_1" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="Aufgabe_4_1" RUN_TARGET_NAME="Aufgabe_4_1">
       <method v="2">
@@ -191,6 +106,7 @@
       <updated>1762449924612</updated>
       <workItem from="1762449925877" duration="185000" />
       <workItem from="1762455197267" duration="7000" />
+      <workItem from="1762455361415" duration="2919000" />
     </task>
     <task id="LOCAL-00001" summary="update">
       <option name="closed" value="true" />
@@ -200,7 +116,15 @@
       <option name="project" value="LOCAL" />
       <updated>1762450024884</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="update">
+      <option name="closed" value="true" />
+      <created>1762455368452</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1762455368452</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
