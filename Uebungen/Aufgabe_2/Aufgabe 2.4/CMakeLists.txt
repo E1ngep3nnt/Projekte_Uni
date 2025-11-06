@@ -1,9 +1,12 @@
 cmake_minimum_required(VERSION 4.0)
-project(Aufgabe_1_4)
+project(Aufgabe_2_4)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(Aufgabe_1_4
-        .idea/.gitignore
+include_directories(.)
+include_directories(.idea)
+
+add_executable(Aufgabe_2_4
         .idea/workspace.xml
-        "Aufgabe 1.4.cpp")
+        "Aufgabe 2.4.cpp"
+        std_lib_inc.h)

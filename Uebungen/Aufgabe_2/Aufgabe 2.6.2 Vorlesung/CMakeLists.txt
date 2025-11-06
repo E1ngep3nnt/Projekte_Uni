@@ -1,12 +1,14 @@
 cmake_minimum_required(VERSION 4.0)
-project(Aufgabe_1_6_Vorlesungs_Version)
+project(Aufgabe_2_6_2_Vorlesung)
 
 set(CMAKE_CXX_STANDARD 14)
 
 include_directories(.)
+include_directories(.idea)
 
-add_executable(Aufgabe_1_6_Vorlesungs_Version
-        .idea/.gitignore
+add_executable(Aufgabe_2_6_2_Vorlesung
+        ".idea/Aufgabe 2.6.2 Vorlesung.iml"
+        .idea/modules.xml
         .idea/workspace.xml
-        "Aufgabe 1.6.cpp"
+        "Aufgabe 2.6.cpp"
         std_lib_inc.h)
