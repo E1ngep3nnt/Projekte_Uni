@@ -18,32 +18,40 @@ int main() {
     cout << "Gib einen Wert ein: \n";
     cin >> zahl;
     cout << "Gib die Waehrung ein (y, k, p, d): \n";
-    cin >> waehrung;
+    char geld;
+    cin >> geld;
 
     double wertIneuro = 0.0;
 
-    switch (waehrung){
-        case 'y':
-        wertIneuro = zahl * yenIneuro;
-        waehrung = "Yen";
-    }
-  case
-        wertIneuro = zahl * kronenIneuro;
-        waehrung = "Kronen";
-    }
-    else if (waehrung == "p") {
-        wertIneuro = zahl * pfundIneuro;
-        waehrung = "Pfund";
-    }
-    else if (waehrung == "d") {
-        wertIneuro = zahl * dollarIneuro;
-        waehrung = "Dollar";
-    }
-    else {
-        cout << "Unbekannte Waehrung.\n";
-        return 1;
-    }
+    switch (geld) {
+        case 'y':{
+            wertIneuro = zahl * yenIneuro;
+            waehrung = "Yen";
+            cout << zahl << " " << waehrung  << " = " << wertIneuro << " Euro\n";
+            break;
+        }
 
-    cout << zahl << " " << waehrung  << " = " << wertIneuro << " Euro\n";
-    return 0;
+        case 'k':{
+            wertIneuro = zahl * kronenIneuro;
+            waehrung = "Kronen";
+            cout << zahl << " " << waehrung  << " = " << wertIneuro << " Euro\n";
+            break;
+        }
+        case 'p':{
+            wertIneuro = zahl * pfundIneuro;
+            waehrung = "Pfund";
+            cout << zahl << " " << waehrung  << " = " << wertIneuro << " Euro\n";
+            break;
+        }
+        case 'd': {
+            wertIneuro = zahl * dollarIneuro;
+            waehrung = "Dollar";
+            cout << zahl << " " << waehrung  << " = " << wertIneuro << " Euro\n";
+            break;
+        }
+        default: {
+            cout << "Unbekannte Waehrung.\n";
+            return 1;
+        }
+    }
 }
