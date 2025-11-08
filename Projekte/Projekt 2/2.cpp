@@ -13,37 +13,38 @@ vector<int> werteLesen() {
 }
 
 // Werte Prüfen
-int datenVergleichen(int fenster) {
-    vector<int> &v = werteLesen();
-    int anzahlDaten = v.size();
-    if (fenster > anzahlDaten) {
-        simple_error("Nicht genug Daten!\n");
+int datenVergleichen() {
+    int anzahlDaten = werte.size();
+    if (fenster >= anzahlDaten) {
+        simple_error("Programm wegen fehlender Zahlenfolge beendet.\n");
         return -1;
     }
-return anzahlDaten;
+    return anzahlDaten;
 }
 
 // Daten sortieren
-int datenSortien() {
-    vector <int> &v= werteLesen();
-    int n = datenVergleichen(fenster);
+int datenSortiren() {
+    vector <int> daten = werteLesen();
+    int n = datenVergleichen ();
     if (n==-1) return -1;
 
-    //Für jeden Start Index im Fenster
-    int start =0;
-    for (int start=0; start<=n-fenster; start++) {
-        array<int,fenster+1> bins;
-        return start;
+    for (int start = 0; start <= n - fenster; ++start) {
+        vector<int> bins(10, 0);
 
-
-        // Werte zählen
-        for (int i =0; i <start+fenster; i++) {
-            int bin=v[i];
-            int binIndex=bin/10;
-            if (binIndex < 0) binIndex =0;
-            if (binIndex > 9) binIndex=9;
+        for (int i = start; i < start + fenster; ++i) {
+            int binIndex = daten[i] / 10;
             ++bins[binIndex];
         }
-        cout << "Fenster [" << start << " - " << (start + fenster - 1) << "]  Werte: ";
+
+        cout << "Fenster " << start << ": ";
+        for (int b : bins) cout << b << " ";
+        cout << "\n";
     }
+}
+    int main() {
+    int werte1=0;
+    while (cin>>werte1) {
+        werte.push_back(werte1);
+    }
+    cout << datenSortiren() << endl;
 }
