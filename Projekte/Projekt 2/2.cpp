@@ -24,6 +24,8 @@ vector<int> werteEinlesen() {
     if (!(cin >> n)) {
         simple_error("Programm wegen fehlender Zahlenfolge beendet.\n");
     }
+
+    // Werte prüfen
     wertPruefen(n);
     werte.push_back(n);
     while (cin >> n) {
@@ -33,7 +35,7 @@ vector<int> werteEinlesen() {
     return werte;
 }
 
-// Werte prüfen
+//Daten Vergleichen
 int datenVergleichen() {
     int anzahlDaten = werte.size();
     if (anzahlDaten < 1) {
