@@ -18,7 +18,7 @@ bool wertPruefen(int n) {
 }
 
 // Werte einlesen
-vector<int> werteEinlesen() {
+vector<int> werteLesen() {
     vector<int> werte;
     int n;
     if (!(cin >> n)) {
@@ -123,7 +123,7 @@ void datenSortieren() {
 }
 
 int main() {
-    werte = werteEinlesen();
+    werte = werteLesen();
     datenSortieren();
     return 0;
 }
