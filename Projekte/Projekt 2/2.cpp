@@ -1,50 +1,127 @@
 //
-// Created by Sebastian on 06.11.2025.
+// Erstellt von Sebastian am 08.11.2025
 //
+
 #include "std_lib_inc.h"
 
 // Globale Variablen
 vector<int> werte={};
 constexpr int fenster=10;
+constexpr int binZaehler=10;
 
-// Funktionen
-vector<int> werteLesen() {
+// Einzelwert prüfen
+bool wertPruefen(int n) {
+    if (n < 0 || n > 99) {
+        simple_error("Eingabe ausserhalb des zulaessigen Bereiches.\n");
+    }
+    return true;
+}
+
+// Werte einlesen
+vector<int> werteEinlesen() {
+    vector<int> werte;
+    int n;
+    if (!(cin >> n)) {
+        simple_error("Programm wegen fehlender Zahlenfolge beendet.\n");
+    }
+    wertPruefen(n);
+    werte.push_back(n);
+    while (cin >> n) {
+        wertPruefen(n);
+        werte.push_back(n);
+    }
     return werte;
 }
 
-// Werte Prüfen
+// Werte prüfen
 int datenVergleichen() {
     int anzahlDaten = werte.size();
-    if (fenster >= anzahlDaten) {
+    if (anzahlDaten < 1) {
         simple_error("Programm wegen fehlender Zahlenfolge beendet.\n");
-        return -1;
     }
     return anzahlDaten;
 }
 
-// Daten sortieren
-int datenSortiren() {
-    vector <int> daten = werteLesen();
-    int n = datenVergleichen ();
-    if (n==-1) return -1;
+// Bins errechnen
+vector<int> berechneBins() {
+    vector<int> bins(binZaehler, 0);
+    for (int x:werte) {
+        int index = x / fenster;
+        if (0 <= index && index < binZaehler) ++bins[index];
+    }
+    return bins;
+}
 
-    for (int start = 0; start <= n - fenster; ++start) {
-        vector<int> bins(10, 0);
+// Minimum Bin finden
+int findeMinBin(const vector<int>& bins) {
+    int minBin = 0;
+    while (minBin < binZaehler && bins[minBin] == 0) ++minBin;
+    return minBin;
+}
 
-        for (int i = start; i < start + fenster; ++i) {
-            int binIndex = daten[i] / 10;
-            ++bins[binIndex];
+// Maximum Bin finden
+int findeMaxBin(const vector<int>& bins) {
+    int maxBin = binZaehler - 1;
+    while (maxBin >= 0 && bins[maxBin] == 0) --maxBin;
+    return maxBin;
+}
+
+// Maximale Höhe finden
+int findeMaxHoehe(const vector<int>& bins, int minBin, int maxBin) {
+    int maxHoehe = 0;
+    for (int i = minBin; i <= maxBin; ++i) {
+        if (bins[i] > maxHoehe) maxHoehe = bins[i];
+    }
+    return maxHoehe;
+}
+
+// Balken drucken
+void druckeBalken(const vector<int>& bins, int minBin, int maxBin, int maxHoehe) {
+    for (int level = maxHoehe; level >= 1; --level) {
+        cout << "  ";
+        for (int i = minBin; i <= maxBin; ++i) {
+            if (bins[i] >= level) cout << 'x';
+            else cout << ' ';
+            cout << "      ";
         }
-
-        cout << "Fenster " << start << ": ";
-        for (int b : bins) cout << b << " ";
-        cout << "\n";
+        cout << '\n';
     }
 }
-    int main() {
-    int werte1=0;
-    while (cin>>werte1) {
-        werte.push_back(werte1);
+
+// Zahl mit führender Null formatieren
+string formatZahlMitNull(int n) {
+    if (n < 10) return string("0") + to_string(n);
+    return to_string(n);
+}
+
+// Achsenbeschriftung drucken
+void druckeLabels(int minBin, int maxBin) {
+    for (int i = minBin; i <= maxBin; ++i) {
+        int niedrig = i * fenster;
+        int hoch = niedrig + fenster - 1;
+        string formatLow = formatZahlMitNull(niedrig);
+        string formatHigh = formatZahlMitNull(hoch);
+        cout << formatLow << '-' << formatHigh << "  ";
     }
-    cout << datenSortiren() << endl;
+    cout << '\n';
+}
+
+// Daten sortieren
+void datenSortieren() {
+    datenVergleichen();
+    vector<int> bins = berechneBins();
+
+    int minBin = findeMinBin(bins);
+    int maxBin = findeMaxBin(bins);
+    if (minBin > maxBin) return;
+
+    int maxHoehe = findeMaxHoehe(bins, minBin, maxBin);
+    druckeBalken(bins, minBin, maxBin, maxHoehe);
+    druckeLabels(minBin, maxBin);
+}
+
+int main() {
+    werte = werteEinlesen();
+    datenSortieren();
+    return 0;
 }
