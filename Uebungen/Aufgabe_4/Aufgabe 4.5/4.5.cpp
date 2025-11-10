@@ -17,14 +17,14 @@ string IntzuBinaer(int n) {
 }
 
 int main() {
-    cout << "\nGib eine ganze Zahl ein (q zum Beenden): ";
+    cout << "Gib eine ganze Zahl ein (q zum Beenden): \n";
     while (true) {
         if (!(cin >> ws)) break;
         if (cin.peek() == 'q') break;
         int x;
         if (!(cin >> x)) break;
         cout << x << " -> " << IntzuBinaer(x) << '\n';
-        cout << "Noch eine Zahl (q zum Beenden): ";
+        cout << "Noch eine Zahl (q zum Beenden): \n";
     }
     return 0;
 }
