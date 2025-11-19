@@ -7,7 +7,7 @@
 class Personen {
     public:
     string name;
-    int alter;
+    int punkte;
 };
 
 vector<Personen> Personen;
