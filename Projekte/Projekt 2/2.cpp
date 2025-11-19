@@ -1,7 +1,3 @@
-//
-// Erstellt von Sebastian am 08.11.2025
-//
-
 #include "std_lib_inc.h"
 
 // Globale Variablen
@@ -10,15 +6,14 @@ constexpr int fenster=10;
 constexpr int binZaehler=10;
 
 // Einzelwert prüfen
-bool wertPruefen(int n) {
+void pruefeEingabewert(int n) {
     if (n < 0 || n > 99) {
         simple_error("Eingabe ausserhalb des zulaessigen Bereiches.\n");
     }
-    return true;
 }
 
 // Werte einlesen
-vector<int> werteLesen() {
+vector<int> eingabewerteEinlesen() {
     vector<int> werte;
     int n;
     if (!(cin >> n)) {
@@ -26,17 +21,17 @@ vector<int> werteLesen() {
     }
 
     // Werte prüfen
-    wertPruefen(n);
+    pruefeEingabewert(n);
     werte.push_back(n);
     while (cin >> n) {
-        wertPruefen(n);
+        pruefeEingabewert(n);
         werte.push_back(n);
     }
     return werte;
 }
 
 //Daten Vergleichen
-int datenVergleichen() {
+int validiereEingabeliste() {
     int anzahlDaten = werte.size();
     if (anzahlDaten < 1) {
         simple_error("Programm wegen fehlender Zahlenfolge beendet.\n");
@@ -45,7 +40,7 @@ int datenVergleichen() {
 }
 
 // Bins errechnen
-vector<int> berechneBins() {
+vector<int> zaehleWerteProBin() {
     vector<int> bins(binZaehler, 0);
     for (int x:werte) {
         int index = x / fenster;
@@ -55,21 +50,21 @@ vector<int> berechneBins() {
 }
 
 // Minimum Bin finden
-int findeMinBin(const vector<int>& bins) {
+int findeErstesNichtLeeresBin(const vector<int>& bins) {
     int minBin = 0;
     while (minBin < binZaehler && bins[minBin] == 0) ++minBin;
     return minBin;
 }
 
 // Maximum Bin finden
-int findeMaxBin(const vector<int>& bins) {
+int findeLetztesNichtLeeresBin(const vector<int>& bins) {
     int maxBin = binZaehler - 1;
     while (maxBin >= 0 && bins[maxBin] == 0) --maxBin;
     return maxBin;
 }
 
 // Maximale Höhe finden
-int findeMaxHoehe(const vector<int>& bins, int minBin, int maxBin) {
+int findeMaxHistogrammHoehe (const vector<int>& bins, int minBin, int maxBin) {
     int maxHoehe = 0;
     for (int i = minBin; i <= maxBin; ++i) {
         if (bins[i] > maxHoehe) maxHoehe = bins[i];
@@ -78,7 +73,7 @@ int findeMaxHoehe(const vector<int>& bins, int minBin, int maxBin) {
 }
 
 // Balken drucken
-void druckeBalken(const vector<int>& bins, int minBin, int maxBin, int maxHoehe) {
+void druckeHistogrammZeilen(const vector<int>& bins, int minBin, int maxBin, int maxHoehe) {
     for (int level = maxHoehe; level >= 1; --level) {
         cout << "  ";
         for (int i = minBin; i <= maxBin; ++i) {
@@ -90,6 +85,7 @@ void druckeBalken(const vector<int>& bins, int minBin, int maxBin, int maxHoehe)
     }
 }
 
+
 // Zahl mit führender Null formatieren
 string formatZahlMitNull(int n) {
     if (n < 10) return string("0") + to_string(n);
@@ -97,7 +93,7 @@ string formatZahlMitNull(int n) {
 }
 
 // Achsenbeschriftung drucken
-void druckeLabels(int minBin, int maxBin) {
+void druckeHistogrammLabels(int minBin, int maxBin) {
     for (int i = minBin; i <= maxBin; ++i) {
         int niedrig = i * fenster;
         int hoch = niedrig + fenster - 1;
@@ -108,22 +104,22 @@ void druckeLabels(int minBin, int maxBin) {
     cout << '\n';
 }
 
-// Daten sortieren
-void datenSortieren() {
-    datenVergleichen();
-    vector<int> bins = berechneBins();
+// Histogramm erstellen und Ausgeben
+void erstelleHistogramm() {
+    validiereEingabeliste();
+    vector<int> bins = zaehleWerteProBin();
 
-    int minBin = findeMinBin(bins);
-    int maxBin = findeMaxBin(bins);
+    int minBin = findeErstesNichtLeeresBin(bins);
+    int maxBin = findeLetztesNichtLeeresBin(bins);
     if (minBin > maxBin) return;
 
-    int maxHoehe = findeMaxHoehe(bins, minBin, maxBin);
-    druckeBalken(bins, minBin, maxBin, maxHoehe);
-    druckeLabels(minBin, maxBin);
+    int maxHoehe = findeMaxHistogrammHoehe(bins, minBin, maxBin);
+    druckeHistogrammZeilen(bins, minBin, maxBin, maxHoehe);
+    druckeHistogrammLabels(minBin, maxBin);
 }
 
 int main() {
-    werte = werteLesen();
-    datenSortieren();
+    werte = eingabewerteEinlesen();
+    erstelleHistogramm();
     return 0;
 }
