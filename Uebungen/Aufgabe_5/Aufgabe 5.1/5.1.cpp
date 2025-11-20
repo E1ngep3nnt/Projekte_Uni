@@ -7,7 +7,7 @@
 int main()
 {
     try {
-        // << Kopieren Sie den Code hier hin >>
+        // << Kopieren Sie den Code hier hin >
         int i = 0; int j = 9; while(i < 10) ++i; if(j < i) cout << "Erfolg!\n";
         keep_window_open();     // Für Windows-NutzerInnen
         return 0;
