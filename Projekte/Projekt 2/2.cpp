@@ -30,7 +30,7 @@ vector<int> eingabewerteEinlesen() {
     return werte;
 }
 
-//Daten Vergleichen
+// Validiert die Eingabe
 int validiereEingabeliste() {
     int anzahlDaten = werte.size();
     if (anzahlDaten < 1) {
@@ -39,7 +39,7 @@ int validiereEingabeliste() {
     return anzahlDaten;
 }
 
-// Bins errechnen
+// Errechnet Wert pro Bin
 vector<int> zaehleWerteProBin() {
     vector<int> bins(binZaehler, 0);
     for (int x:werte) {
@@ -72,7 +72,7 @@ int findeMaxHistogrammHoehe (const vector<int>& bins, int minBin, int maxBin) {
     return maxHoehe;
 }
 
-// Balken drucken
+// Druckt die Histogrammzeilen
 void druckeHistogrammZeilen(const vector<int>& bins, int minBin, int maxBin, int maxHoehe) {
     for (int level = maxHoehe; level >= 1; --level) {
         cout << "  ";
@@ -92,7 +92,7 @@ string formatZahlMitNull(int n) {
     return to_string(n);
 }
 
-// Achsenbeschriftung drucken
+// Achsenbeschriftung drucken [00-09], [10-19] etc..
 void druckeHistogrammLabels(int minBin, int maxBin) {
     for (int i = minBin; i <= maxBin; ++i) {
         int niedrig = i * fenster;
