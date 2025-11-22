@@ -75,15 +75,12 @@ void druckeSpielfeld(const Spielzustand &spielzustand) {
                     && spielzustand.schlange.front().posY == zeilenKoordinate) {
                     cout << 'O';
                     feldGedruckt = true;
-                } else if (!feldGedruckt
-                           && spielzustand.futterPosition.posX == spaltenIndex
-                           && spielzustand.futterPosition.posY == zeilenKoordinate) {
+                } else if (!feldGedruckt && spielzustand.futterPosition.posX == spaltenIndex && spielzustand.futterPosition.posY == zeilenKoordinate) {
                     cout << '#';
                     feldGedruckt = true;
                 } else {
                     for (size_t segmentIndex = 1; segmentIndex < spielzustand.schlange.size(); ++segmentIndex) {
-                        if (spielzustand.schlange[segmentIndex].posX == spaltenIndex
-                            && spielzustand.schlange[segmentIndex].posY == zeilenKoordinate) {
+                        if (spielzustand.schlange[segmentIndex].posX == spaltenIndex && spielzustand.schlange[segmentIndex].posY == zeilenKoordinate) {
                             cout << 'o';
                             feldGedruckt = true;
                             break;
