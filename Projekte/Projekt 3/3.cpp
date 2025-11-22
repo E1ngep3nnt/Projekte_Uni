@@ -71,19 +71,42 @@ vector<int> eingabewerteEinlesen() {
 
 
 // Spielfeld genereieren
-void druckeSpielfeld(Spielzustand) {
-    for (int reihe = 0; reihe < spielbreite+2; ++reihe) {
-        if (reihe == 0 || reihe == spielbreite+1) {
-            // erste oder letzte Zeile: "|" gefolgt von eingabewertx Strichen
-            cout << "|" <<string(spielhoehe, '-') << "|"<< '\n';
+void druckeSpielfeld(Spielzustand aktuell) {
+    int breite=aktuell.spielbreite;
+    int hoehe=aktuell.spielhoehe;
+    for (int reihe = 0; reihe < hoehe+2; ++reihe) {
+        if (reihe == 0 || reihe == hoehe+1) {
+            // erste oder letzte Zeile: "|" gefolgt von Strichen im Abstand Spielbreite
+            cout << "|" <<string(breite, '-') << "|"<< '\n';
         } else {
             // mittlere Zeilen: nur "|"
-            cout << "|" <<string(spielhoehe, ' ') << "|\n";
+            cout << "|" <<string(breite, ' ') << "|\n";
         }
     }
 }
 
 int main() {
-    werte = eingabewerteEinlesen();
-    druckeSpielfeld(Spielzustand);
+    try {
+        werte = eingabewerteEinlesen();
+        if (werte.size() < 2) throw fehlendeZahlen{};
+        Spielzustand initial;
+        initial.spielbreite = werte.at(0);
+        initial.spielhoehe = werte.at(1);
+        initial.punktzahl = 0;
+        initial.gameOver = false;
+        initial.gegessen = false;
+        druckeSpielfeld(initial);
+    } catch (const ungueltiger_Bereich&) {
+        cout << "Eingabe ausserhalb des zulaessigen Bereiches.\n";
+        return 1;
+    } catch (const fehlendeZahlen&) {
+        cout << " Programm wegen fehlender Spielfeldeingabe beendet.\n";
+        return 1;
+    } catch (const unzulaessig&) {
+        cout << "Unzulaessige Eingabe! Nutze w, a, s, d zum Bewegen oder q zum Beenden.\n";
+        return 1;
+    } catch (...) {
+        cout << "Unbekannter Fehler\n";
+        return 1;
+    }
 }
