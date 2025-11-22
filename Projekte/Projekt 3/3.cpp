@@ -1,157 +1,193 @@
 #include "std_lib_inc.h"
 
-class Schlangenglied{
-public:
-    int x, y;
-};
-
-class Point2d{
-public:
-    int px, py;
-};
-
-
-// Stellt den aktuellen Spielzustand dar
-class Spielzustand{
-public:
-    int spielbreite{};
-    int spielhoehe{};
-    vector<Schlangenglied> python;
-    int punktzahl{};
-    bool gameOver{};
-    bool gegessen{};
-    Point2d futter{};
-    // ...
-};
-
-// Fehlerklassen
 class BereichsFehler{};
 class EingabeFehler{};
 class UnzulaessigeEingabe{};
 
-//Globale Variablen
-vector<int> werte;
-char steuerung() {
-  char w;
-  char a;
-  char s;
-  char d;
-  char q;
+class Schlangenglied{
+public:
+    int posX{0};
+    int posY{0};
+};
+
+struct Position {
+    int posX{0};
+    int posY{0};
+};
+
+class Spielzustand{
+public:
+    int spielbreite{0};
+    int spielhoehe{0};
+    vector<Schlangenglied> schlange;
+    Position futterPosition{0,0};
+    int punktzahl{0};
+    bool gameOver{false};
+    bool hatGeradeGefressen{false};
+};
+
+int pruefeEingabewert() {
+    int eingabewert;
+    if (!(cin >> eingabewert)) throw EingabeFehler{};
+    if (eingabewert < 3 || eingabewert > 25) throw BereichsFehler{};
+    return eingabewert;
 }
 
-// Einzelwert prüfen
-void pruefeEingabewert(int eingabe) {
-    if (eingabe < 3 || eingabe > 25) {
-        int breite = eingabe;
-        int hoehe = breite;
-        if (!(cin >> breite)) throw EingabeFehler{};
-        if (!(cin >> hoehe)) throw EingabeFehler{};
-        if (breite < 3 || breite > 25 || hoehe < 3 || hoehe > 25) throw BereichsFehler{};
-    }
+void leseSpielfeldGroesse(Spielzustand &spielzustand) {
+    spielzustand.spielbreite = pruefeEingabewert();
+    spielzustand.spielhoehe = pruefeEingabewert();
 }
 
-// Werte einlesen und zurückgeben
-vector<int> eingabewerteEinlesen() {
-    int eingabe;
-    // erste Zahl
-    if (!(cin >> eingabe)) {
-        throw EingabeFehler{};
-    }
-    pruefeEingabewert(eingabe);
-    werte.push_back(eingabe);
-    Spielzustand breite;
-    breite.spielbreite=werte.at(0);
-
-    // zweite Zahl
-    if (!(cin >> eingabe)) {
-        throw EingabeFehler{};
-    }
-    pruefeEingabewert(eingabe);
-    werte.push_back(eingabe);
-    Spielzustand hoehe;
-    hoehe.spielhoehe=werte.at(0);
-    return werte;
-}
-
-// Spielfeld genereieren
-void druckeSpielfeld(const Spielzustand & aktuell) {
-    int breite=aktuell.spielbreite;
-    int hoehe=aktuell.spielhoehe;
-    for (int reihe = 0; reihe < hoehe+2; ++reihe) {
-        if (reihe == 0 || reihe == hoehe+1) {
-            // erste oder letzte Zeile: "|" gefolgt von Strichen im Abstand Spielbreite
-            cout << "|" <<string(breite, '-') << "|"<< '\n';
+Position berechneFutterposition(const Spielzustand &spielzustand, const Position &kopfPosition) {
+    Position futterPosition{
+        ((17 * kopfPosition.posX) % spielzustand.spielbreite) + 1,
+        ((13 * kopfPosition.posY) % spielzustand.spielhoehe) + 1
+    };
+    auto istPositionBelegt = [&](const Position& pruefPosition) {
+        for (const auto &segment : spielzustand.schlange) {
+            if (segment.posX == pruefPosition.posX && segment.posY == pruefPosition.posY) return true;
         }
-        else {
-            int Zeilenkoordinate=reihe;
+        return false;
+    };
+    int schritt = 1;
+    while (istPositionBelegt(futterPosition)) {
+        futterPosition.posX = ((futterPosition.posX + schritt - 1) % spielzustand.spielbreite) + 1;
+        futterPosition.posY = ((futterPosition.posY + schritt - 1) % spielzustand.spielhoehe) + 1;
+        ++schritt;
+        if (schritt > spielzustand.spielbreite * spielzustand.spielhoehe) break;
+    }
+    return futterPosition;
+}
+
+void druckeSpielfeld(const Spielzustand &spielzustand) {
+    int feldBreite = spielzustand.spielbreite;
+    int feldHoehe = spielzustand.spielhoehe;
+    for (int reiheIndex = 0; reiheIndex < feldHoehe + 2; ++reiheIndex) {
+        if (reiheIndex == 0 || reiheIndex == feldHoehe + 1) {
+            cout << "|" << string(feldBreite, '-') << "|\n";
+        } else {
+            int zeilenKoordinate = reiheIndex;
             cout << "|";
-            for (int x=1; x<=breite; ++x) {
-                bool gedruckt=false;
-                if (!aktuell.python.empty()&&aktuell.python.front().x==x && aktuell.python.front().y==Zeilenkoordinate) {
-                    cout << 'o';
-                    gedruckt=true;
-                }
-                else if (!gedruckt && aktuell.futter.px==x &&aktuell.futter.py==Zeilenkoordinate) {
+            for (int spaltenIndex = 1; spaltenIndex <= feldBreite; ++spaltenIndex) {
+                bool feldGedruckt = false;
+                if (!spielzustand.schlange.empty()
+                    && spielzustand.schlange.front().posX == spaltenIndex
+                    && spielzustand.schlange.front().posY == zeilenKoordinate) {
+                    cout << 'O';
+                    feldGedruckt = true;
+                } else if (!feldGedruckt
+                           && spielzustand.futterPosition.posX == spaltenIndex
+                           && spielzustand.futterPosition.posY == zeilenKoordinate) {
                     cout << '#';
-                    gedruckt=true;
-                }
-                else {
-                    for (size_t i=1; i<aktuell.python.size(); ++i) {
-                        cout << 'o';
-                        gedruckt = true;
-                        break;
+                    feldGedruckt = true;
+                } else {
+                    for (size_t segmentIndex = 1; segmentIndex < spielzustand.schlange.size(); ++segmentIndex) {
+                        if (spielzustand.schlange[segmentIndex].posX == spaltenIndex
+                            && spielzustand.schlange[segmentIndex].posY == zeilenKoordinate) {
+                            cout << 'o';
+                            feldGedruckt = true;
+                            break;
+                        }
                     }
                 }
-                if (!gedruckt) cout << ' ';
+                if (!feldGedruckt) cout << ' ';
             }
             cout << "|\n";
         }
     }
-    cout << "Punktzahl: " << aktuell.punktzahl << "\n";
+    cout << "Punktzahl: " << spielzustand.punktzahl << "\n";
 }
 
-//Futter erzeugung
-Point2d berechneFutter(int kopfX, int kopfY, int breite, int hoehe) {
-    Point2d futter;
-    futter.px = ((17*kopfX)%breite)+1;
-    futter.py = ((17*kopfY)%hoehe)+1;
-    return futter;
+void initialisiereSpiel(Spielzustand& spielzustand) {
+    spielzustand.punktzahl = 0;
+    spielzustand.gameOver = false;
+    spielzustand.hatGeradeGefressen = false;
+    spielzustand.schlange.clear();
+    int startKopfX = (spielzustand.spielbreite / 2) + 1;
+    int startKopfY = (spielzustand.spielhoehe / 2) + 1;
+    Schlangenglied startKopf;
+    startKopf.posX = startKopfX;
+    startKopf.posY = startKopfY;
+    spielzustand.schlange.push_back(startKopf);
+    Position startKopfPosition{startKopfX, startKopfY};
+    spielzustand.futterPosition = berechneFutterposition(spielzustand, startKopfPosition);
 }
 
-// Initialisiert Spielzustand: Kopfposition, Punktzahl, Futter, etc.
-void Spielfeldinitialisierung(Spielzustand &initial) {
-    initial.punktzahl=0;
-    initial.gameOver=false;
-    initial.gegessen=false;
-    int kopfX=(initial.spielbreite/2)+1;
-    int kopfY=(initial.spielhoehe/2)+1;
-    initial.python.clear();
-    Schlangenglied kopf{kopfX,kopfY};
-    initial.python.push_back(kopf);
-    initial.futter=berechneFutter(kopfX,kopfY,initial.spielbreite,initial.spielhoehe);
+char leseSteuerung() {
+    char steuerungsEingabe;
+    if (!(cin >> steuerungsEingabe)) return 'q';
+    if (steuerungsEingabe == 'w' || steuerungsEingabe == 'a' || steuerungsEingabe == 's' || steuerungsEingabe == 'd' || steuerungsEingabe == 'q') {
+        return steuerungsEingabe;
+    }
+    throw UnzulaessigeEingabe{};
+}
+
+void bewegeSchlange(Spielzustand& spielzustand, char steuerungsCode) {
+    if (steuerungsCode == 'q') {
+        spielzustand.gameOver = true;
+        return;
+    }
+    Schlangenglied aktuellesKopfSegment = spielzustand.schlange.front();
+    Position neueKopfPosition{aktuellesKopfSegment.posX, aktuellesKopfSegment.posY};
+    if (steuerungsCode == 'w') neueKopfPosition.posY -= 1;
+    else if (steuerungsCode == 's') neueKopfPosition.posY += 1;
+    else if (steuerungsCode == 'a') neueKopfPosition.posX -= 1;
+    else if (steuerungsCode == 'd') neueKopfPosition.posX += 1;
+    if (neueKopfPosition.posX < 1 || neueKopfPosition.posX > spielzustand.spielbreite
+        || neueKopfPosition.posY < 1 || neueKopfPosition.posY > spielzustand.spielhoehe) {
+        spielzustand.gameOver = true;
+        return;
+    }
+    bool tailBleibtBeiDieserBewegung = spielzustand.hatGeradeGefressen;
+    for (size_t segmentIndex = 0; segmentIndex < spielzustand.schlange.size(); ++segmentIndex) {
+        bool istSchwanzSegment = (segmentIndex == spielzustand.schlange.size() - 1);
+        if (!tailBleibtBeiDieserBewegung && istSchwanzSegment) continue;
+        const auto& segment = spielzustand.schlange[segmentIndex];
+        if (neueKopfPosition.posX == segment.posX && neueKopfPosition.posY == segment.posY) {
+            spielzustand.gameOver = true;
+            return;
+        }
+    }
+    Schlangenglied neuerKopfSegment;
+    neuerKopfSegment.posX = neueKopfPosition.posX;
+    neuerKopfSegment.posY = neueKopfPosition.posY;
+    spielzustand.schlange.insert(spielzustand.schlange.begin(), neuerKopfSegment);
+    bool hatGefressen = (neueKopfPosition.posX == spielzustand.futterPosition.posX && neueKopfPosition.posY == spielzustand.futterPosition.posY);
+    if (hatGefressen) {
+        spielzustand.punktzahl += 10;
+        spielzustand.futterPosition = berechneFutterposition(spielzustand, neueKopfPosition);
+        spielzustand.hatGeradeGefressen = true;
+    } else {
+        spielzustand.hatGeradeGefressen = false;
+    }
+    if (!tailBleibtBeiDieserBewegung) {
+        if (!spielzustand.schlange.empty()) spielzustand.schlange.pop_back();
+    }
 }
 
 int main() {
     try {
-        werte = eingabewerteEinlesen();
-        if (werte.size() < 2) throw EingabeFehler{};
-        Spielzustand initial;
-        initial.spielbreite = werte.at(0);
-        initial.spielhoehe  = werte.at(1);
-        Spielfeldinitialisierung(initial);
-        druckeSpielfeld(initial);
-
+        Spielzustand spielzustand;
+        leseSpielfeldGroesse(spielzustand);
+        initialisiereSpiel(spielzustand);
+        druckeSpielfeld(spielzustand);
+        while (!spielzustand.gameOver) {
+            try {
+                char steuerungsCode = leseSteuerung();
+                bewegeSchlange(spielzustand, steuerungsCode);
+                if (spielzustand.gameOver) break;
+                druckeSpielfeld(spielzustand);
+            } catch (const UnzulaessigeEingabe&) {
+                cout << "Unzulaessige Eingabe! Nutze w, a, s, d zum Bewegen oder q zum Beenden.\n";
+            }
+        }
+        cout << "Game Over! Gesamtpunktzahl: " << spielzustand.punktzahl << ".\n";
+        return 0;
     } catch (const BereichsFehler&) {
         cout << "Eingabe ausserhalb des zulaessigen Bereiches.\n";
         return 1;
     } catch (const EingabeFehler&) {
         cout << "Programm wegen fehlender Spielfeldeingabe beendet.\n";
-        return 1;
-    } catch (const UnzulaessigeEingabe&) {
-        cout << "Unzulaessige Eingabe! Nutze w, a, s, d zum Bewegen oder q zum Beenden.\n";
-        return 1;
-    } catch (...) {
-        cout << "Unbekannter Fehler\n";
         return 1;
     }
 }
