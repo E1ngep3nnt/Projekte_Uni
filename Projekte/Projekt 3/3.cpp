@@ -30,7 +30,7 @@ class fehlendeZahlen{};
 class unzulaessig{};
 
 //Globale Variablen
-vector <int> werte={};
+vector<int> werte;
 char steuerung() {
   char w;
   char a;
@@ -48,7 +48,6 @@ void pruefeEingabewert(int eingabe) {
 
 // Werte einlesen und zurückgeben
 vector<int> eingabewerteEinlesen() {
-    vector<int> werte;
     int eingabe;
     // erste Zahl
     if (!(cin >> eingabe)) {
@@ -56,6 +55,8 @@ vector<int> eingabewerteEinlesen() {
     }
     pruefeEingabewert(eingabe);
     werte.push_back(eingabe);
+    Spielzustand breite;
+    breite.spielbreite=werte.at(0);
 
     // zweite Zahl
     if (!(cin >> eingabe)) {
@@ -63,24 +64,26 @@ vector<int> eingabewerteEinlesen() {
     }
     pruefeEingabewert(eingabe);
     werte.push_back(eingabe);
+    Spielzustand hoehe;
+    hoehe.spielhoehe=werte.at(0);
     return werte;
 }
 
 
 // Spielfeld genereieren
-void druckeSpielfeld(int eingabewerty, int eingabewertx ) {
-    for (int reihe = 0; reihe < eingabewertx+2; ++reihe) {
-        if (reihe == 0 || reihe == eingabewertx+1) {
+void druckeSpielfeld(Spielzustand) {
+    for (int reihe = 0; reihe < spielbreite+2; ++reihe) {
+        if (reihe == 0 || reihe == spielbreite+1) {
             // erste oder letzte Zeile: "|" gefolgt von eingabewertx Strichen
-            cout << "|" <<string(eingabewerty, '-') << "|"<< '\n';
+            cout << "|" <<string(spielhoehe, '-') << "|"<< '\n';
         } else {
             // mittlere Zeilen: nur "|"
-            cout << "|" <<string(eingabewerty, ' ') << "|\n";
+            cout << "|" <<string(spielhoehe, ' ') << "|\n";
         }
     }
 }
 
 int main() {
     werte = eingabewerteEinlesen();
-    druckeSpielfeld(werte.at(0), werte.at(1));
+    druckeSpielfeld(Spielzustand);
 }
