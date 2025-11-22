@@ -100,7 +100,7 @@ int main() {
         cout << "Eingabe ausserhalb des zulaessigen Bereiches.\n";
         return 1;
     } catch (const fehlendeZahlen&) {
-        cout << " Programm wegen fehlender Spielfeldeingabe beendet.\n";
+        cout << "Programm wegen fehlender Spielfeldeingabe beendet.\n";
         return 1;
     } catch (const unzulaessig&) {
         cout << "Unzulaessige Eingabe! Nutze w, a, s, d zum Bewegen oder q zum Beenden.\n";
