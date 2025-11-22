@@ -14,13 +14,13 @@ public:
 // Stellt den aktuellen Spielzustand dar
 class Spielzustand{
 public:
-    int spielbreite;
-    int spielhoehe;
+    int spielbreite{};
+    int spielhoehe{};
     vector<Schlangenglied> python;
-    int punktzahl;
-    bool gameOver;
-    bool gegessen;
-    Point2d futter;
+    int punktzahl{};
+    bool gameOver{};
+    bool gegessen{};
+    Point2d futter{};
     // ...
 };
 
@@ -71,7 +71,7 @@ vector<int> eingabewerteEinlesen() {
 
 
 // Spielfeld genereieren
-void druckeSpielfeld(Spielzustand aktuell) {
+void druckeSpielfeld(Spielzustand  aktuell) {
     int breite=aktuell.spielbreite;
     int hoehe=aktuell.spielhoehe;
     for (int reihe = 0; reihe < hoehe+2; ++reihe) {
