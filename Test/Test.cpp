@@ -1,206 +1,185 @@
-//
-// Created by Sebastian on 22.11.2025.
-//
-
 #include "std_lib_inc.h"
-#include <iostream>
-#include <vector>
-#include <string>
-#include <sstream>
 
-using namespace std;
+// Fehlerklassen für Validierung und Steuerung
+class BereichsFehler{};           // Eingabe ausserhalb des erlaubten Bereichs
+class EingabeFehler{};            // Nicht-numerische Eingabe bei Spielfeldgroesse
+class UnzulaessigeEingabe{};      // Falsches Steuerungszeichen
 
-class Schlangenglied {
-public:
-    int x, y;
+// 2D-Position auf dem Spielfeld
+struct Position {
+    int x{0};
+    int y{0};
 };
 
-class Point2d {
-public:
-    int px, py;
-};
-
+// Repräsentiert den kompletten Spielzustand
 class Spielzustand {
 public:
-    int spielbreite{};
-    int spielhoehe{};
-    vector<Schlangenglied> python;
-    int punktzahl{};
-    bool gameOver{};
-    bool gegessen{}; // Wachstum wartet (wird bei der nächsten Bewegung umgesetzt)
-    Point2d futter{};
+    int spielbreite{0};
+    int spielhoehe{0};
+    vector<Position> schlange; // erstes Element ist der Kopf
+    Position futter{0,0};
+    int punktzahl{0};
+    bool beendet{false};
+    bool hatGeradeGefressen{false};
 };
 
-class EingabeFehler {};
-class BereichsFehler {};
-class UnzulaessigeEingabe {};
-
-// Liest die Spielfeldgröße (zwei ints) ein und validiert den Bereich [3,25]
-void leseSpielfeldgroesse(Spielzustand &sz) {
-    int b, h;
-    if (!(cin >> b)) throw EingabeFehler{};
-    if (!(cin >> h)) throw EingabeFehler{};
-    if (b < 3 || b > 25 || h < 3 || h > 25) throw BereichsFehler{};
-    sz.spielbreite = b;
-    sz.spielhoehe = h;
+/* Liest eine Ganzzahl und validiert den Bereich [3,25];
+ * wirft Exceptions bei Fehlern (BereichsFehler, EingabeFehler). */
+int leseDimension() {
+    int wert;
+    if (!(cin >> wert)) {
+        throw EingabeFehler{};
+    }
+    if (wert < 3 || wert > 25) {
+        throw BereichsFehler{};
+    }
+    return wert;
 }
 
-// Erzeugt Futter basierend auf der gegebenen Kopfposition und Spielfeldgröße
-Point2d berechneFutter(int kopfX, int kopfY, int width, int height) {
-    Point2d p;
-    p.px = ((17 * kopfX) % width) + 1;
-    p.py = ((13 * kopfY) % height) + 1;
-    return p;
+/* Liest Spielfeldbreite und -hoehe und speichert im Spielzustand. */
+void leseSpielfeldGroesse(Spielzustand& s) {
+    s.spielbreite = leseDimension();
+    s.spielhoehe  = leseDimension();
 }
 
-// Initialisiert Spielzustand: Kopfposition, Punktzahl, Futter, etc.
-void initialisiereSpiel(Spielzustand &sz) {
-    sz.punktzahl = 0;
-    sz.gameOver = false;
-    sz.gegessen = false;
-    int headX = (sz.spielbreite / 2) + 1;
-    int headY = (sz.spielhoehe / 2) + 1;
-    sz.python.clear();
-    Schlangenglied head{headX, headY};
-    sz.python.push_back(head);
-    sz.futter = berechneFutter(headX, headY, sz.spielbreite, sz.spielhoehe);
+/* Berechnet eine Futterposition basierend auf der Kopfposition;
+ * Formel: x=((17*x_kopf)%breite)+1, y=((13*y_kopf)%hoehe)+1
+ * vermeidet Kollision mit Schlange, bleibt deterministisch. */
+Position berechneFutter(const Spielzustand& s, const Position& kopf) {
+    Position f{ ((17 * kopf.x) % s.spielbreite) + 1, ((13 * kopf.y) % s.spielhoehe) + 1 };
+    auto belegt = [&](const Position& p) {
+        for (const auto& seg : s.schlange) if (seg.x == p.x && seg.y == p.y) return true;
+        return false;
+    };
+    int step = 1;
+    while (belegt(f)) {
+        f.x = ((f.x + step - 1) % s.spielbreite) + 1;
+        f.y = ((f.y + step - 1) % s.spielhoehe) + 1;
+        ++step;
+        if (step > s.spielbreite * s.spielhoehe) break;
+    }
+    return f;
 }
 
-// Gibt das Spielfeld mit Priorisierung (Kopf O, Futter #, Körper o) aus
-void druckeSpielfeld(const Spielzustand &sz) {
-    int width = sz.spielbreite;
-    int height = sz.spielhoehe;
+/* Initialisiert Punktzahl, Schlange (nur Kopf) und Futter. */
+void initialisiereSpiel(Spielzustand& s) {
+    s.punktzahl = 0;
+    s.beendet   = false;
+    s.schlange.clear();
+    Position kopf{ (s.spielbreite / 2) + 1, (s.spielhoehe / 2) + 1 };
+    s.schlange.push_back(kopf);
+    s.futter = berechneFutter(s, kopf);
+}
 
-    for (int row = 0; row < height + 2; ++row) {
-        if (row == 0 || row == height + 1) {
-            cout << "|" << string(width, '-') << "|\n";
-        } else {
-            int y = row; // y von 1..height
-            cout << "|";
-            for (int x = 1; x <= width; ++x) {
-                bool gedruckt = false;
-                if (!sz.python.empty() && sz.python.front().x == x && sz.python.front().y == y) {
-                    cout << 'O';
-                    gedruckt = true;
-                } else if (!gedruckt && sz.futter.px == x && sz.futter.py == y) {
-                    cout << '#';
-                    gedruckt = true;
-                } else {
-                    // Körper prüfen (ohne Kopf)
-                    for (size_t i = 1; i < sz.python.size(); ++i) {
-                        if (sz.python[i].x == x && sz.python[i].y == y) {
-                            cout << 'o';
-                            gedruckt = true;
-                            break;
-                        }
+/* Gibt das Spielfeld exakt im geforderten Format aus. */
+void zeichneSpielfeld(const Spielzustand& s) {
+    cout << "|" << string(s.spielbreite, '-') << "|\n";
+    for (int y = 1; y <= s.spielhoehe; ++y) {
+        cout << "|";
+        for (int x = 1; x <= s.spielbreite; ++x) {
+            bool gedruckt = false;
+            if (!s.schlange.empty() && s.schlange.front().x == x && s.schlange.front().y == y) {
+                cout << 'O';
+                gedruckt = true;
+            }
+            if (!gedruckt && s.futter.x == x && s.futter.y == y) {
+                cout << '#';
+                gedruckt = true;
+            }
+            if (!gedruckt) {
+                for (size_t i = 1; i < s.schlange.size(); ++i) {
+                    if (s.schlange[i].x == x && s.schlange[i].y == y) {
+                        cout << 'o';
+                        gedruckt = true;
+                        break;
                     }
                 }
-                if (!gedruckt) cout << ' ';
             }
-            cout << "|\n";
+            if (!gedruckt) cout << ' ';
         }
+        cout << "|\n";
     }
-    cout << "Punktzahl: " << sz.punktzahl << "\n";
+    cout << "|" << string(s.spielbreite, '-') << "|\n";
+    cout << "Punktzahl: " << s.punktzahl << "\n";
 }
 
-// Liest eine einzelne Bewegungs-Eingabe (eine Zeile). Akzeptiert w/a/s/d/q, wirft bei anderen Zeichen.
-char leseBewegung() {
-    string line;
-    if (!std::getline(cin, line)) throw EingabeFehler{};
-    if (line.empty()) throw UnzulaessigeEingabe{};
-    char c = line[0];
+/* Liest eine Steuerungseingabe; erlaubt w,a,s,d,q; andere Zeichen werfen UnzulaessigeEingabe. */
+char leseSteuerung() {
+    char c;
+    if (!(cin >> c)) {
+        return 'q';
+    }
     if (c == 'w' || c == 'a' || c == 's' || c == 'd' || c == 'q') return c;
     throw UnzulaessigeEingabe{};
 }
 
-// Aktualisiert den Spielzustand anhand der Eingabe
-void aktualisiereSpiel(Spielzustand &sz, char move) {
-    bool pendingGrowth = sz.gegessen; // Wachstum aus vorherigem Happen
-    Schlangenglied oldHead = sz.python.front();
-    Schlangenglied newHead = oldHead;
+/* Wendet eine Bewegung auf den Spielzustand an:
+ * verschiebt Segmente, prüft Essen und Kollisionen. */
+void bewegeSchlange(Spielzustand& s, char steuercode) {
+    if (steuercode == 'q') { s.beendet = true; return; }
 
-    if (move == 'w') newHead.y -= 1;
-    else if (move == 's') newHead.y += 1;
-    else if (move == 'a') newHead.x -= 1;
-    else if (move == 'd') newHead.x += 1;
+    Position kopf = s.schlange.front();
+    Position neu = kopf;
+    if (steuercode == 'w')      neu.y -= 1;
+    else if (steuercode == 's') neu.y += 1;
+    else if (steuercode == 'a') neu.x -= 1;
+    else if (steuercode == 'd') neu.x += 1;
 
-    bool willEat = (newHead.x == sz.futter.px && newHead.y == sz.futter.py);
-    if (willEat) {
-        sz.punktzahl += 10;
-        sz.gegessen = true; // Wachstum wird bei der nächsten Bewegung umgesetzt
-        sz.futter = berechneFutter(newHead.x, newHead.y, sz.spielbreite, sz.spielhoehe);
-    } else {
-        // kein neues Futter -> sz.gegessen bleibt wie es ist (nur pendingGrowth steuert Pop)
-    }
-
-    // 2. Spielende prüfen: außerhalb oder Kollisionsprüfung mit Körper
-    if (newHead.x < 1 || newHead.x > sz.spielbreite || newHead.y < 1 || newHead.y > sz.spielhoehe) {
-        sz.gameOver = true;
+    if (neu.x < 1 || neu.x > s.spielbreite || neu.y < 1 || neu.y > s.spielhoehe) {
+        s.beendet = true;
         return;
     }
-
-    bool tailWillMove = !pendingGrowth;
-    size_t bodySize = sz.python.size();
-    for (size_t i = 0; i < bodySize; ++i) {
-        if (tailWillMove && i == bodySize - 1) continue; // letzter Teil wird wegbewegt -> darf überlaufen werden
-        if (sz.python[i].x == newHead.x && sz.python[i].y == newHead.y) {
-            sz.gameOver = true;
-            return;
+    // Selbstkollision: Wenn der Schwanz in dieser Runde entfernt wird,
+    // darf das bisherige Schwanzfeld betreten werden (kein Kollisionsende).
+    bool skipTailRemovalThisMove = s.hatGeradeGefressen; // true -> Schwanz bleibt, Feld belegt
+    for (size_t i = 0; i < s.schlange.size(); ++i) {
+        bool istSchwanzSegment = (i == s.schlange.size() - 1);
+        if (!skipTailRemovalThisMove && istSchwanzSegment) {
+            continue; // Schwanz wird entfernt, Feld gilt nicht als belegt
         }
+        const auto& seg = s.schlange[i];
+        if (neu.x == seg.x && neu.y == seg.y) { s.beendet = true; return; }
     }
 
-    // Segmente verschieben
-    sz.python.insert(sz.python.begin(), newHead);
-    if (!pendingGrowth) {
-        if (!sz.python.empty()) sz.python.pop_back();
+    s.schlange.insert(s.schlange.begin(), neu);
+
+    bool hatGefressen = (neu.x == s.futter.x && neu.y == s.futter.y);
+    if (hatGefressen) {
+        s.punktzahl += 10;
+        s.futter = berechneFutter(s, neu);
+        s.hatGeradeGefressen = true; // Wachstum erst in der naechsten Bewegung sichtbar
     } else {
-        // Wachstum wurde jetzt umgesetzt; zukünftige Schritte nicht mehr "pending"
-        sz.gegessen = false;
+        s.hatGeradeGefressen = false;
+    }
+    if (!skipTailRemovalThisMove) {
+        if (!s.schlange.empty()) s.schlange.pop_back();
     }
 }
 
 int main() {
-    ios::sync_with_stdio(false);
-    cin.tie(nullptr);
-
     try {
         Spielzustand s;
-        leseSpielfeldgroesse(s);
+        leseSpielfeldGroesse(s);
         initialisiereSpiel(s);
-        druckeSpielfeld(s);
+        zeichneSpielfeld(s);
 
-        while (true) {
-            char mv;
+        while (!s.beendet) {
             try {
-                mv = leseBewegung();
-            } catch (const UnzulaessigeEingabe &) {
+                char cmd = leseSteuerung();
+                bewegeSchlange(s, cmd);
+                if (s.beendet) break;
+                zeichneSpielfeld(s);
+            } catch (const UnzulaessigeEingabe&) {
                 cout << "Unzulaessige Eingabe! Nutze w, a, s, d zum Bewegen oder q zum Beenden.\n";
-                continue;
-            } catch (const EingabeFehler &) {
-                cout << "Programm wegen fehlender Spielfeldeingabe beendet.\n";
-                return 1;
             }
-
-            if (mv == 'q') {
-                cout << "Game Over! Gesamtpunktzahl: " << s.punktzahl << ".\n";
-                return 0;
-            }
-
-            aktualisiereSpiel(s, mv);
-            if (s.gameOver) {
-                cout << "Game Over! Gesamtpunktzahl: " << s.punktzahl << ".\n";
-                return 0;
-            }
-            druckeSpielfeld(s);
         }
-    } catch (const BereichsFehler &) {
+        cout << "Game Over! Gesamtpunktzahl: " << s.punktzahl << " .\n";
+        return 0;
+    } catch (const BereichsFehler&) {
         cout << "Eingabe ausserhalb des zulaessigen Bereiches.\n";
         return 1;
-    } catch (const EingabeFehler &) {
+    } catch (const EingabeFehler&) {
         cout << "Programm wegen fehlender Spielfeldeingabe beendet.\n";
-        return 1;
-    } catch (...) {
-        cout << "Programm wegen unbekanntem Fehler beendet.\n";
         return 1;
     }
 }
