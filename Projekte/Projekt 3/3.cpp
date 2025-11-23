@@ -145,10 +145,10 @@ void bewegeSchlange(Spielzustand& spielzustand, char steuerungsCode) {
             return;
         }
     }
-    Schlangenglied neuerKopfSegment;
-    neuerKopfSegment.posX = neueKopfPosition.posX;
-    neuerKopfSegment.posY = neueKopfPosition.posY;
-    spielzustand.schlange.insert(spielzustand.schlange.begin(), neuerKopfSegment);
+    Schlangenglied neuesKopfSegment;
+    neuesKopfSegment.posX = neueKopfPosition.posX;
+    neuesKopfSegment.posY = neueKopfPosition.posY;
+    spielzustand.schlange.insert(spielzustand.schlange.begin(), neuesKopfSegment);
     bool hatGefressen = (neueKopfPosition.posX == spielzustand.futterPosition.posX && neueKopfPosition.posY == spielzustand.futterPosition.posY);
     if (hatGefressen) {
         spielzustand.punktzahl += 10;
