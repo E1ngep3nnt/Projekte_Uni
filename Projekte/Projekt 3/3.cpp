@@ -163,6 +163,7 @@ void bewegeSchlange(Spielzustand& spielzustand, char steuerungsCode) {
 }
 
 int main() {
+    cout <<'>'<< " ";
     try {
         Spielzustand spielzustand;
         leseSpielfeldGroesse(spielzustand);
@@ -170,6 +171,7 @@ int main() {
         druckeSpielfeld(spielzustand);
         while (!spielzustand.gameOver) {
             try {
+                cout <<'>'<< " ";
                 char steuerungsCode = leseSteuerung();
                 bewegeSchlange(spielzustand, steuerungsCode);
                 if (spielzustand.gameOver) break;
