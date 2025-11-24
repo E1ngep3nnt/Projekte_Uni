@@ -14,8 +14,7 @@ void pruefeEingabewert(int n) {
 
 // Werte einlesen
 vector<int> eingabewerteEinlesen() {
-    vector<int> werte;
-    int n;
+    int n=0;
     if (!(cin >> n)) {
         simple_error("Programm wegen fehlender Zahlenfolge beendet.\n");
     }
@@ -32,7 +31,7 @@ vector<int> eingabewerteEinlesen() {
 
 // Validiert die Eingabe
 int validiereEingabeliste() {
-    int anzahlDaten = werte.size();
+    int anzahlDaten = static_cast<int>(werte.size());
     if (anzahlDaten < 1) {
         simple_error("Programm wegen fehlender Zahlenfolge beendet.\n");
     }
@@ -49,21 +48,21 @@ vector<int> zaehleWerteProBin() {
     return bins;
 }
 
-// Minimum Bin finden
+// Findet das erste befüllte Bin
 int findeErstesNichtLeeresBin(const vector<int>& bins) {
     int minBin = 0;
     while (minBin < binZaehler && bins[minBin] == 0) ++minBin;
     return minBin;
 }
 
-// Maximum Bin finden
+// Findet das letzte befüllte Bin
 int findeLetztesNichtLeeresBin(const vector<int>& bins) {
     int maxBin = binZaehler - 1;
     while (maxBin >= 0 && bins[maxBin] == 0) --maxBin;
     return maxBin;
 }
 
-// Maximale Höhe finden
+// Maximale Höhe finden, also wie oft ist X in bin 1,2,3 etc.
 int findeMaxHistogrammHoehe (const vector<int>& bins, int minBin, int maxBin) {
     int maxHoehe = 0;
     for (int i = minBin; i <= maxBin; ++i) {
