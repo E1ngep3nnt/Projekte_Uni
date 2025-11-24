@@ -1,44 +1,39 @@
+//
+// Created by Sebastian on 22.11.2025.
+//
 #include "std_lib_inc.h"
 
-class Schlangenglied
-{
-public:
-    int x, y;
-};
-
-class Point2d
-{
-public:
-    int px, py;
-};
-
-
-// Stellt den aktuellen Spielzustand dar
-class Spielzustand
-{
-public:
-    int spielbreite;
-    int spielhoehe;
-    vector<Schlangenglied> python;
-    int punktzahl;
-    bool gameOver;
-    bool gegessen;
-    Point2d futter;
-    // ...
-};
 // Fehlerklassen
-class ungueltiger_Bereich{};
-class fehlendeZahlen{};
-class unzulaessig{};
+class BereichsFehler{};
+class EingabeFehler{};
+class UnzulaessigeEingabe{};
 
-//Globale Variablen
-char steuerung() {
-  char w;
-  char a;
-  char s;
-  char d;
-  char q;
-}
+// Schlangenklassen
+class Schlangenglied{
+public:
+    int posX{0};
+    int posY{0};
+};
+
+class Position {
+public:
+    int posX{0};
+    int posY{0};
+};
+
+//Spielzustandsklassen
+class Spielzustand{
+public:
+    int spielbreite{0};
+    int spielhoehe{0};
+    vector<Schlangenglied> schlange;
+    Position futterPosition{0,0};
+    int punktzahl{0};
+    bool gameOver{false};
+    bool hatGeradeGefressen{false};
+};
+
+
 
 // Eingabe Funktion
 void pruefeEingabeWert (int eingabe) {
@@ -46,15 +41,15 @@ void pruefeEingabeWert (int eingabe) {
         throw ungueltiger_Bereich{};
     }
     if (!(cin >> eingabe)) {
-    throw fehlendeZahlen{};
+        throw fehlendeZahlen{};
     }
 }
 
 // Bewegungseingabe Validieren
 void eingabeValidierung(char steuerung) {
-  if (!(cin >> steuerung)) {
-      throw unzulaessig{};
-  }
+    if (!(cin >> steuerung)) {
+        throw unzulaessig{};
+    }
 }
 
 // Spielfeld genereieren
@@ -63,6 +58,28 @@ void druckeSpielfeld(int eingabe) {
 }
 
 int main() {
-
-    return 0;
+    cout <<'>'<< " ";
+    try {
+        Spielzustand aktuellerSpielzustand = erstelleNeuenSpielstand();
+        druckeSpielfeld(aktuellerSpielzustand);
+        while (!aktuellerSpielzustand.gameOver) {
+            try {
+                cout <<'>'<< " ";
+                char steuerungsCode = leseSteuerung();
+                bewegeSchlange(aktuellerSpielzustand, steuerungsCode);
+                if (aktuellerSpielzustand.gameOver) break;
+                druckeSpielfeld(aktuellerSpielzustand);
+            } catch (const UnzulaessigeEingabe&) {
+                cout << "Unzulaessige Eingabe! Nutze w, a, s, d zum Bewegen oder q zum Beenden.\n";
+            }
+        }
+        cout << "Game Over! Gesamtpunktzahl: " << aktuellerSpielzustand.punktzahl << ".\n";
+        return 0;
+    } catch (const BereichsFehler&) {
+        cout << "Eingabe ausserhalb des zulaessigen Bereiches.\n";
+        return 1;
+    } catch (const EingabeFehler&) {
+        cout << "Programm wegen fehlender Spielfeldeingabe beendet.\n";
+        return 1;
+    }
 }
