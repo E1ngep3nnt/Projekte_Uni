@@ -68,7 +68,7 @@ Spielzustand erstelleNeuenSpielstand() {
     return neuerSpielzustand;
 }
 
-// Berechnet Futterposition basierend auf dem aktuellen Spielstand
+// Berechnet Futterposition basierend auf dem aktuellen Spielstand.
 Position berechneFutterposition(const Spielzustand &aktuellerSpielzustand, const Position &kopfPosition) {
     Position futterPosition{
         ((17 * kopfPosition.posX) % aktuellerSpielzustand.spielbreite) + 1,

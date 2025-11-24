@@ -4,23 +4,43 @@
 
 #include "std_lib_inc.h"
 
-int main() {
-    activateAssertions();
-    int n=0;
-    int zahl = 1;
-    int zahl2 = 1;
-    int temporaereZahl = 1;
-    int zeahler = 2;
-    cin>> n;
+class negativerInput{};
+class ueberlauf{};
 
+int zahl =1;
+int zahl2 = 1;
+int temporaereZahl = 1;
+int zaehler = 2;
+int eingabe=0;
 
-    while(zahl <= numeric_limits<int>::max() - zahl2) {
-        temporaereZahl = zahl + zahl2;
-        zahl = zahl2;
-        zahl2 = temporaereZahl;
-        ++zeahler;
+int Fibbonacci() {
+    if (eingabe>=0 && eingabe<32768) {
+        while(zaehler<eingabe) {
+            temporaereZahl = zahl + zahl2;
+            zahl = zahl2;
+            zahl2 = temporaereZahl;
+            ++zaehler;
+        }
+        cout << "Die " << zaehler << "-te Fibonacci-Zahl ist: " << zahl2 <<"\n";
     }
+    else if (eingabe>=32768) {
+        throw ueberlauf{};
+    }
+    else if (eingabe<=0) {
+        throw negativerInput {};
+    }
+}
 
-    cout << "Die groesste Fibonacci-Zahl, die noch in 'int' passt ist: " << zahl2 << '\n';
-    cout << "Dies ist die " << zeahler << "-te Fibonacci-Zahl.\n";
+
+int main() {
+    cin>>eingabe;
+    try {
+        Fibbonacci();
+    }
+    catch (negativerInput&) {
+        cout << "Negativer Input\n";
+    }
+    catch (ueberlauf&) {
+     cout << "Ueberlauf bei zu grossen Input\n";
+    }
 }

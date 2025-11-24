@@ -1,6 +1,7 @@
 //
 // Created by Sebastian on 22.11.2025.
 //
+
 #include "std_lib_inc.h"
 
 // Fehlerklassen
@@ -53,25 +54,69 @@ int pruefeEingabewert() {
 }
 
 // Liest die Spielfeldgröße ein
-void leseSPielfeldGroesse (Spielzustand& aktuellerSpielzustand) {
-    aktuellerSpielzustand.spielbreite = pruefeEingabeWert();
-    aktuellerSpielzustand.spielhoehe = pruefeEingabeWert();
+void leseSpielfeldGroesse(Spielzustand &aktuellerSpielzustand) {
+    aktuellerSpielzustand.spielbreite = pruefeEingabewert();
+    aktuellerSpielzustand.spielhoehe = pruefeEingabewert();
 }
 
+// Ruft Positionsfunktion für de nachfolgende funktionen auf obwohl sie erst später deklariert wird
+Position berechneFutterposition(const Spielzustand & aktuellerSpielzustand, const Position & kopfPosition);
 
-// Spielfeld genereieren
-void druckeSpielfeld(int eingabe) {
-
+// Spielfeld initialisieren
+void initialisiereSpiel(Spielzustand & aktuellerSpielzustand) {
+    aktuellerSpielzustand.punktzahl = 0;
+    aktuellerSpielzustand.gameOver = false;
+    aktuellerSpielzustand.hatGeradeGefressen = false;
+    aktuellerSpielzustand.schlange.clear();
+    int startKopfX=(aktuellerSpielzustand.spielbreite/2)+1;
+    int startKopfY=(aktuellerSpielzustand.spielbreite/2)+1;
+    Schlangenglied startKopf;
+    startKopfX=startKopfX;
+    startKopfY=startKopfY;
+    aktuellerSpielzustand.schlange.push_back(startKopf);
+    Position startkopfPosition{startKopfX, startKopfY};
+    aktuellerSpielzustand.futterPosition = berechneFutterposition(aktuellerSpielzustand, startkopfPosition);
 }
+
+// Berechnet Futterposition basierend auf dem aktuellen Spielstand.
+Position berechneFutterposition(const Spielzustand &aktuellerSpielzustand, const Position &kopfPosition) {
+    Position futterPosition {
+        ((17*kopfPosition.posX/aktuellerSpielzustand.spielbreite)+1)
+        ((13*kopfPosition.posY/aktuellerSpielzustand.spielhoehe)+1)
+        };
+    int istPositionBelegt=(const Position& pruefePosition){
+        for (const Schlangenglied &segment : aktuellerSpielzustand.schlange) {
+            if (segment.posX == pruefePosition.posX && segment.posY == pruefePosition.posY)
+                return true;
+        }
+        return false;
+    };
+    int schritt=1;
+    while (istPositionBelegt (futterPosition)) {
+     futterPosition.posX=((futterPosition.posX-schritt)%aktuellerSpielzustand.spielbreite)+1;
+     futterPosition.posY=((futterPosition.posY-schritt)%aktuellerSpielzustand.spielhoehe)+1;
+        ++schritt;
+        if (schritt>aktuellerSpielzustand.spielbreite*aktuellerSpielzustand.spielhoehe)
+            break;
+    }return futterPosition;
+}
+
+// Druckt den aktuellen Spielzustand (liest nur Werte ein)
+void druckeSpielfeld(const Spielzustand &aktuellerSpielzustand) {
+    int feldBreite=aktuellerSpielzustand.spielbreite;
+    int feldHoehe=aktuellerSpielzustand.spielhoehe;
+    for (int reiheIndex=0, ){}
+}
+
 
 int main() {
-    cout <<'>'<< " ";
+    cout <<'>'<< "";
     try {
         Spielzustand aktuellerSpielzustand = erstelleNeuenSpielstand();
         druckeSpielfeld(aktuellerSpielzustand);
         while (!aktuellerSpielzustand.gameOver) {
             try {
-                cout <<'>'<< " ";
+                cout <<'>'<< "";
                 char steuerungsCode = leseSteuerung();
                 bewegeSchlange(aktuellerSpielzustand, steuerungsCode);
                 if (aktuellerSpielzustand.gameOver) break;

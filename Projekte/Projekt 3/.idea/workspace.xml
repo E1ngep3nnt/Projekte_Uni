@@ -6,6 +6,7 @@
   <component name="BackendCodeEditorMiscSettings">
     <option name="/Default/Housekeeping/FeatureSuggestion/FeatureSuggestionManager/DisabledSuggesters/=SwitchToGoToActionSuggester/@EntryIndexedValue" value="true" type="bool" />
     <option name="/Default/Housekeeping/GlobalSettingsUpgraded/IsUpgraded/@EntryValue" value="true" type="bool" />
+    <option name="/Default/Housekeeping/LiveTemplatesHousekeeping/HotspotSessionHintIsShown/@EntryValue" value="true" type="bool" />
     <option name="/Default/RiderDebugger/RiderRestoreDecompile/RestoreDecompileSetting/@EntryValue" value="false" type="bool" />
   </component>
   <component name="CMakePresetLoader">{
@@ -28,8 +29,9 @@
   <component name="ChangeListManager">
     <list default="true" id="3a1c8af8-0248-4819-b513-4333abb86d9c" name="Changes" comment="update">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-Debug-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-Debug-log.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/3.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/3.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Projekt Test/3.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../Projekt Test/3.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Projekt Test/3.exe" beforeDir="false" afterPath="$PROJECT_DIR$/../Projekt Test/3.exe" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -128,6 +130,10 @@
       <workItem from="1763966634836" duration="282000" />
       <workItem from="1763966956474" duration="205000" />
       <workItem from="1763967841910" duration="24000" />
+      <workItem from="1763968079172" duration="344000" />
+      <workItem from="1763974806110" duration="3203000" />
+      <workItem from="1763978961013" duration="1286000" />
+      <workItem from="1763981076581" duration="11000" />
     </task>
     <task id="LOCAL-00001" summary="update">
       <option name="closed" value="true" />
@@ -137,7 +143,23 @@
       <option name="project" value="LOCAL" />
       <updated>1763814020060</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="update">
+      <option name="closed" value="true" />
+      <created>1763968401874</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1763968401874</updated>
+    </task>
+    <task id="LOCAL-00003" summary="update">
+      <option name="closed" value="true" />
+      <created>1763968415869</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1763968415869</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
