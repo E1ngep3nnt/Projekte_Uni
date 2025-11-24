@@ -38,19 +38,26 @@ public:
 // Eingabe Funktion
 void pruefeEingabeWert (int eingabe) {
     if (eingabe<3 || eingabe>25) {
-        throw ungueltiger_Bereich{};
+        throw UnzulaessigeEingabe{};
     }
     if (!(cin >> eingabe)) {
-        throw fehlendeZahlen{};
+        throw BereichsFehler{};
     }
 }
 
-// Bewegungseingabe Validieren
-void eingabeValidierung(char steuerung) {
-    if (!(cin >> steuerung)) {
-        throw unzulaessig{};
-    }
+// Prüft die Eingabe und gibt die Werte fürs Spielfeld zurück
+int pruefeEingabewert() {
+    int eingabewert=0;
+    if (!(cin >> eingabewert)) throw EingabeFehler{};
+    return eingabewert;
 }
+
+// Liest die Spielfeldgröße ein
+void leseSPielfeldGroesse (Spielzustand& aktuellerSpielzustand) {
+    aktuellerSpielzustand.spielbreite = pruefeEingabeWert();
+    aktuellerSpielzustand.spielhoehe = pruefeEingabeWert();
+}
+
 
 // Spielfeld genereieren
 void druckeSpielfeld(int eingabe) {
