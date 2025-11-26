@@ -112,13 +112,12 @@ void druckeSpielfeld(const Spielzustand &aktuellerSpielzustand) {
 int main() {
     cout <<'>'<< "";
     try {
-        Spielzustand aktuellerSpielzustand = erstelleNeuenSpielstand();
+        Spielzustand aktuellerSpielzustand;
         druckeSpielfeld(aktuellerSpielzustand);
         while (!aktuellerSpielzustand.gameOver) {
             try {
                 cout <<'>'<< "";
-                char steuerungsCode = leseSteuerung();
-                bewegeSchlange(aktuellerSpielzustand, steuerungsCode);
+                char steuerungsCode;
                 if (aktuellerSpielzustand.gameOver) break;
                 druckeSpielfeld(aktuellerSpielzustand);
             } catch (const UnzulaessigeEingabe&) {
