@@ -32,20 +32,30 @@ TokenStream::TokenStream() {
     voll=false;
 }
 
-void TokenStream::putback(Token token) {
-    assert(!voll, "putback() in einen vollen Puffer");
-    puffer = token;
-    voll=true;
-}
-
 Token TokenStream::get() {
-    if (voll){
-        voll=false;
+    if (voll) {
+        voll = false;
         return puffer;
     }
-    char eingabe;
-    cin >>eingabe;
 
+    char eingabe;
+    cin >> eingabe;
+
+    // überspringe '>'-Zeichen falls es gelesen werden sollte
+    while (eingabe == '>') {
+        if (!(cin >> eingabe))
+            throw EingabeFehler{};
+    }
+
+    if (static_cast<unsigned char>(eingabe)) {
+        cin.putback(eingabe);
+        int wert;
+        if (!(cin >> wert)) // Lesefehler abfangen
+            throw EingabeFehler{};
+        return Token{kZahl, wert};
+    }
+
+    // Danach die Steuerzeichen behandeln
     switch (eingabe) {
         case kEnde:
         case 'w':
@@ -53,17 +63,6 @@ Token TokenStream::get() {
         case 's':
         case 'd':
             return Token{eingabe};
-        case '3':
-        case '4':
-        case '5':
-        case '6':
-        case '7':
-        case '8':
-        case '9':
-            cin.putback (eingabe);
-            int wert;
-            cin >> wert;
-            return Token{kZahl, wert};
         default:
             throw EingabeFehler{};
     }
@@ -99,54 +98,54 @@ public:
     bool hatGeradeGefressen;         // Flag: Wachstums-Trigger nach Fressen
 };
 
-// Eingabe Funktion
-int pruefeEingabeWert(){
-Token eingabe=token_stream.get();
-
-}
-
 // Prüft die Eingabe und gibt die Werte fürs Spielfeld zurück
-int pruefeEingabewert() {
+int pruefeEingabeWert() {
+    Token eingabeWert = token_stream.get();
+
+    if (eingabeWert.art == kZahl) {
+        if (eingabeWert.wert < 3 || eingabeWert.wert > 25) {
+            throw BereichsFehler{};
+        }
+        return eingabeWert.wert; // gültiger Wert
+    }
+    if (eingabeWert.art == kEnde) {
+        // optional: besondere Behandlung für 'q'
+        throw UnzulaessigeEingabe{};
+    }
+    else {
+        // andere Steuerzeichen (w,a,s,d) sind hier nicht erlaubt
+        throw UnzulaessigeEingabe{};
+    }
 }
+
 
 
 // Liest die Spielfeldgröße ein
-void leseSpielfeldGroesse(Spielzustand &) {
+void leseSpielfeldGroesse(){
 }
 
 // Ruft Positionsfunktion für de nachfolgende funktionen auf obwohl sie erst später deklariert wird
-Position berechneFutterposition(const Spielzustand & aktuellerSpielzustand, const Position & kopfPosition);
+Position berechneFutterposition();
 
 // Spielfeld initialisieren
-void initialisiereSpiel(Spielzustand &) {
+void initialisiereSpiel(){
 }
 
 // Berechnet Futterposition basierend auf dem aktuellen Spielstand.
-Position berechneFutterposition(const Spielzustand &, const Position &) {
+Position berechneFutterposition() {
 }
 
 // Druckt den aktuellen Spielzustand (liest nur Werte ein)
-void druckeSpielfeld(const Spielzustand &) {
+void druckeSpielfeld(){
 }
 
 int main() {
     cout <<'>'<< "";
     try {
-        Spielzustand aktuellerSpielzustand;
-        druckeSpielfeld(aktuellerSpielzustand);
-        while (!aktuellerSpielzustand.gameOver) {
-            try {
-                cout <<'>'<< "";
-                char steuerungsCode;
-                if (aktuellerSpielzustand.gameOver) break;
-                druckeSpielfeld(aktuellerSpielzustand);
-            } catch (const UnzulaessigeEingabe&) {
-                cout << "Unzulaessige Eingabe! Nutze w, a, s, d zum Bewegen oder q zum Beenden.\n";
-            }
-        }
-        cout << "Game Over! Gesamtpunktzahl: " << aktuellerSpielzustand.punktzahl << ".\n";
+        pruefeEingabeWert();
         return 0;
-    } catch (const BereichsFehler&) {
+    }
+    catch (const BereichsFehler&) {
         cout << "Eingabe ausserhalb des zulaessigen Bereiches.\n";
         return 1;
     } catch (const EingabeFehler&) {
