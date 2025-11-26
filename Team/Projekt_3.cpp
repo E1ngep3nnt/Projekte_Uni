@@ -3,6 +3,11 @@
 constexpr char kZahl = 'z';
 constexpr char kEnde = 'q';
 
+// Fehlerklassen: werden als Exception-Typen verwendet
+class BereichsFehler {};       // für Werte außerhalb des erlaubten Bereichs
+class EingabeFehler {};        // für nicht-numerische bzw. fehlende Eingabe
+class UnzulaessigeEingabe {};  // für ungültige Steuerungszeichen
+
 // Token Klassen
 class Token {
 public:
@@ -38,22 +43,31 @@ Token TokenStream::get() {
         voll=false;
         return puffer;
     }
-    char bewegung;
-    cin >> bewegung;
-    switch (bewegung) {
+    char eingabe;
+    cin >>eingabe;
+
+    switch (eingabe) {
         case kEnde:
         case 'w':
         case 'a':
         case 's':
         case 'd':
-            return Token{bewegung};
+            return Token{eingabe};
+        case '3':
+        case '4':
+        case '5':
+        case '6':
+        case '7':
+        case '8':
+        case '9':
+            cin.putback (eingabe);
+            int wert;
+            cin >> wert;
+            return Token{kZahl, wert};
+        default:
+            throw EingabeFehler{};
     }
 }
-
-// Fehlerklassen: werden als Exception-Typen verwendet
-class BereichsFehler {};       // für Werte außerhalb des erlaubten Bereichs
-class EingabeFehler {};        // für nicht-numerische bzw. fehlende Eingabe
-class UnzulaessigeEingabe {};  // für ungültige Steuerungszeichen
 
 // Einzelnes Schlangenglied (Segment)
 class Schlangenglied {
