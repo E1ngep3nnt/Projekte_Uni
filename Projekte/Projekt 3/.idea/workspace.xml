@@ -28,10 +28,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3a1c8af8-0248-4819-b513-4333abb86d9c" name="Changes" comment="update">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Uebungen/Aufgabe_6/Aufgabe 6.5/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Uebungen/Aufgabe_6/Aufgabe 6.5/.idea/Aufgabe 6.5.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Uebungen/Aufgabe_6/Aufgabe 6.5/.idea/editor.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Uebungen/Aufgabe_6/Aufgabe 6.5/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Uebungen/Aufgabe_6/Aufgabe 6.5/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Uebungen/Aufgabe_6/Aufgabe 6.5/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Uebungen/Aufgabe_6/Aufgabe 6.5/6.5.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/3.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/3.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Projekt Test/3.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../Projekt Test/3.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Projekt Test/3.exe" beforeDir="false" afterPath="$PROJECT_DIR$/../Projekt Test/3.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Uebungen/Aufgabe_6/Aufgabe 6.4/6.4.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../../Uebungen/Aufgabe_6/Aufgabe 6.4/6.4.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -134,6 +139,7 @@
       <workItem from="1763974806110" duration="3203000" />
       <workItem from="1763978961013" duration="1286000" />
       <workItem from="1763981076581" duration="11000" />
+      <workItem from="1764149974433" duration="1074000" />
     </task>
     <task id="LOCAL-00001" summary="update">
       <option name="closed" value="true" />

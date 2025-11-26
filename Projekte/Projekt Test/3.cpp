@@ -77,7 +77,7 @@ Position berechneFutterposition(const Spielzustand &aktuellerSpielzustand, const
     auto istPositionBelegt = [&](const Position& pruefPosition) {
         for (const auto &segment : aktuellerSpielzustand.schlange) {
             if (segment.posX == pruefPosition.posX && segment.posY == pruefPosition.posY) return true;
-        }
+        }>
         return false;
     };
     int schritt = 1;

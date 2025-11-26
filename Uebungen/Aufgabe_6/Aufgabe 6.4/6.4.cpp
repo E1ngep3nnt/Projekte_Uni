@@ -5,17 +5,17 @@
 #include "std_lib_inc.h"
 
 
-int main()
-{
-    double d = 0;
-    while(cin >> d)
-    {
-        int i = d;
-        char c = i;
-        int i2 = c;
-        cout << "d == " << d
-             << ", i == " << i
-             << ", i2 == " << i2
-             << ", char(" << c << ")\n";
+int main() {
+    activateAssertions();
+
+    double doublE = 0;
+    while(cin >> doublE) {
+        int inT = doublE;
+        char chaR = inT;
+        int int2 = chaR;
+        cout << "d == " << doublE
+             << ", i == " << inT
+             << ", i2 == " << int2
+             << ", char(" << chaR << ")\n";
     }
 }

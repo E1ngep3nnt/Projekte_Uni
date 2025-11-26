@@ -4,6 +4,62 @@
 
 #include "std_lib_inc.h"
 
+constexpr char kZahl = 'z';
+constexpr char kAusgabe = ';';
+constexpr char kEnde = 'q';
+constexpr string kPrompt = "> ";
+constexpr string kRueckgabe = "= ";
+
+// Token Klassen
+class Token {
+    public:
+    char art{};
+    int wert{};
+};
+
+// Tokenstream
+class TokenStream {
+    public:
+    TokenStream();
+    Token get();
+    void putback(Token token);
+    void ignore_until(char input_character);
+
+    private:
+    Token puffer;
+    bool voll;
+};
+
+TokenStream::TokenStream() {
+    voll=false;
+}
+
+void TokenStream::putback(Token token) {
+    assert(!voll, "putback() in einen vollen Puffer");
+    puffer = token;
+    voll=true;
+}
+
+Token TokenStream::get() {
+    if (voll){
+    voll=false;
+    return puffer;
+}
+char bewegung;
+cin >> bewegung;
+    switch (bewegung) {
+        case kAusgabe:
+        case kEnde:
+        case 'w':
+        case 'a':
+        case 's':
+        case 'd':
+            return Token{bewegung};
+    case
+    }}
+
+
+
 // Fehlerklassen
 class BereichsFehler{};
 class EingabeFehler{};
@@ -12,24 +68,24 @@ class UnzulaessigeEingabe{};
 // Schlangenklassen
 class Schlangenglied{
 public:
-    int posX{0};
-    int posY{0};
+    int posX{};
+    int posY{};
 };
 
 class Position {
 public:
-    int posX{0};
-    int posY{0};
+    int posX{};
+    int posY{};
 };
 
 //Spielzustandsklassen
 class Spielzustand{
 public:
-    int spielbreite{0};
-    int spielhoehe{0};
+    int spielbreite{};
+    int spielhoehe{};
     vector<Schlangenglied> schlange;
-    Position futterPosition{0,0};
-    int punktzahl{0};
+    Position futterPositi{};
+    int punktzahl{};
     bool gameOver{false};
     bool hatGeradeGefressen{false};
 };
@@ -105,7 +161,7 @@ Position berechneFutterposition(const Spielzustand &aktuellerSpielzustand, const
 void druckeSpielfeld(const Spielzustand &aktuellerSpielzustand) {
     int feldBreite=aktuellerSpielzustand.spielbreite;
     int feldHoehe=aktuellerSpielzustand.spielhoehe;
-    for (int reiheIndex=0, ){}
+    for (int reiheIndex=0,){}
 }
 
 
