@@ -55,8 +55,8 @@ cin >> bewegung;
         case 's':
         case 'd':
             return Token{bewegung};
-    case
-    }}
+    }
+}
 
 
 
