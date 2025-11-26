@@ -1,7 +1,7 @@
 #include "std_lib_inc.h"
+
 constexpr char kZahl = 'z';
 constexpr char kEnde = 'q';
-
 
 // Token Klassen
 class Token {
@@ -51,9 +51,9 @@ Token TokenStream::get() {
 }
 
 // Fehlerklassen: werden als Exception-Typen verwendet
-class BereichsFehler { };        // für Werte außerhalb des erlaubten Bereichs
-class EingabeFehler { };        // für nicht-numerische bzw. fehlende Eingabe
-class UnzulaessigeEingabe { };  // für ungültige Steuerungszeichen
+class BereichsFehler {};       // für Werte außerhalb des erlaubten Bereichs
+class EingabeFehler {};        // für nicht-numerische bzw. fehlende Eingabe
+class UnzulaessigeEingabe {};  // für ungültige Steuerungszeichen
 
 // Einzelnes Schlangenglied (Segment)
 class Schlangenglied {
@@ -91,22 +91,22 @@ int pruefeEingabewert() {
 
 
 // Liest die Spielfeldgröße ein
-void leseSpielfeldGroesse(Spielzustand &aktuellerSpielzustand) {
+void leseSpielfeldGroesse(Spielzustand &) {
 }
 
 // Ruft Positionsfunktion für de nachfolgende funktionen auf obwohl sie erst später deklariert wird
 Position berechneFutterposition(const Spielzustand & aktuellerSpielzustand, const Position & kopfPosition);
 
 // Spielfeld initialisieren
-void initialisiereSpiel(Spielzustand & aktuellerSpielzustand) {
+void initialisiereSpiel(Spielzustand &) {
 }
 
 // Berechnet Futterposition basierend auf dem aktuellen Spielstand.
-Position berechneFutterposition(const Spielzustand &aktuellerSpielzustand, const Position &kopfPosition) {
+Position berechneFutterposition(const Spielzustand &, const Position &) {
 }
 
 // Druckt den aktuellen Spielzustand (liest nur Werte ein)
-void druckeSpielfeld(const Spielzustand &aktuellerSpielzustand) {
+void druckeSpielfeld(const Spielzustand &) {
 }
 
 int main() {
