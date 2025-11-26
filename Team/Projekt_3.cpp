@@ -69,6 +69,10 @@ Token TokenStream::get() {
     }
 }
 
+// TokenStream-Objekt, mit dem wir arbeiten werden. Das ist eine globale Variable und daher sehr ungünstig.
+// Mit den zu diesem Zeitpunkt zur Verfügung stehenden Mitteln können wir es nicht besser designen.
+TokenStream token_stream;
+
 // Einzelnes Schlangenglied (Segment)
 class Schlangenglied {
 public:
@@ -96,7 +100,9 @@ public:
 };
 
 // Eingabe Funktion
-void pruefeEingabeWert(TokenStream::get(Token()){
+int pruefeEingabeWert(){
+Token eingabe=token_stream.get();
+
 }
 
 // Prüft die Eingabe und gibt die Werte fürs Spielfeld zurück
