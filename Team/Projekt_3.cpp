@@ -96,7 +96,7 @@ public:
 };
 
 // Eingabe Funktion
-void pruefeEingabeWert (int eingabe) {
+void pruefeEingabeWert(TokenStream::get(Token()){
 }
 
 // Prüft die Eingabe und gibt die Werte fürs Spielfeld zurück
